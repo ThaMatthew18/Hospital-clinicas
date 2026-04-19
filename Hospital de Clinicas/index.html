@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hospital de Clínicas "Dr. Manuel Quintela"</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- PALETA OFICIAL: AZUL MARINO Y GRIS --- */
+        :root {
+            --azul-hc: #003366;      /* Azul institucional */
+            --azul-claro: #0056b3;
+            --gris-fondo: #f4f4f4;
+            --texto-oscuro: #333333;
+            --blanco: #FFFFFF;
+            --borde: #e0e0e0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--blanco);
+            color: var(--texto-oscuro);
+            min-width: 1366px;
+            line-height: 1.5;
+        }
+
+        /* --- HEADER (Como el oficial) --- */
+        header {
+            background-color: var(--blanco);
+            height: 100px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 10%;
+            border-bottom: 4px solid var(--azul-hc);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container { display: flex; align-items: center; gap: 15px; }
+        .logo-img { width: 60px; height: 60px; background: var(--azul-hc); border-radius: 4px; } /* Representación del escudo */
+        
+        .logo-texto { text-decoration: none; color: var(--azul-hc); line-height: 1.1; }
+        .logo-texto h1 { font-size: 20px; font-weight: 800; }
+        .logo-texto p { font-size: 12px; font-weight: 600; text-transform: uppercase; }
+
+        nav ul { display: flex; list-style: none; }
+        nav ul li { margin-left: 25px; }
+        nav ul li a {
+            text-decoration: none;
+            color: var(--azul-hc);
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+        nav ul li a:hover { color: var(--azul-claro); }
+
+        /* --- HERO / BANNER PRINCIPAL --- */
+        #inicio {
+            height: 450px;
+            background: linear-gradient(rgba(0,51,102,0.7), rgba(0,51,102,0.7)), 
+                        url('https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&q=80&w=1366') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding-left: 10%;
+        }
+
+        .hero-box {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 40px;
+            max-width: 500px;
+            border-left: 8px solid var(--azul-hc);
+        }
+
+        .hero-box h2 { font-size: 32px; color: var(--azul-hc); margin-bottom: 10px; }
+        .hero-box p { font-size: 16px; font-weight: 500; }
+
+        /* --- SECCIÓN SERVICIOS (BOTONES CUADRADOS) --- */
+        #servicios { padding: 60px 10%; background: var(--gris-fondo); }
+        .section-title { color: var(--azul-hc); font-size: 28px; margin-bottom: 30px; text-align: left; border-bottom: 2px solid var(--azul-hc); display: inline-block; }
+
+        .container-cards {
+    display: flex;         /* Activa el modo flexible */
+    gap: 20px;            /* Espacio entre tarjetas */
+    align-items: stretch; /* ESTO es lo que hace que todas midan lo mismo de alto */
+    margin-top: 50px;
+}
+
+.card-link {
+    flex: 1;              /* Hace que todas las columnas ocupen el mismo ancho */
+    display: flex;        /* Permite que el enlace también se estire */
+    text-decoration: none;
+}
+
+.card {
+    background: var(--blanco);
+    padding: 30px;
+    border: 1px solid var(--borde);
+    text-align: center;
+    width: 100%;          /* Asegura que ocupe todo el ancho del link */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centra el contenido verticalmente si una es más alta */
+}
+        .card:hover { border-color: var(--azul-hc); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .card h3 { color: var(--azul-hc); margin-bottom: 10px; font-size: 18px; }
+
+        /* --- NOTICIAS --- */
+        .noticias { padding: 60px 10%; }
+        .noticias-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        .noticia-item { border-bottom: 1px solid var(--borde); padding-bottom: 20px; }
+        .noticia-item h4 { color: var(--azul-hc); margin-bottom: 10px; font-size: 18px; }
+
+        /* --- INFORMACIÓN ÚTIL (GRID) --- */
+        #info { padding: 60px 10%; background: var(--gris-fondo); }
+        .info-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+        .info-item { background: var(--blanco); padding: 20px; border-top: 4px solid var(--azul-hc); font-size: 14px; }
+        .info-item h4 { color: var(--azul-hc); margin-bottom: 10px; }
+
+        /* --- FOOTER --- */
+        footer { 
+            padding: 60px 10%; 
+            background: var(--azul-hc); 
+            color: var(--blanco); 
+            display: grid; 
+            grid-template-columns: 2fr 1fr;
+            gap: 50px;
+        }
+        .footer-info h2 { font-size: 20px; margin-bottom: 20px; }
+        .footer-info p { font-size: 14px; margin-bottom: 10px; opacity: 0.9; }
+
+        .btn-contacto { 
+            display: inline-block;
+            padding: 15px 30px; 
+            background: var(--blanco); 
+            color: var(--azul-hc); 
+            text-decoration: none; 
+            font-weight: 700; 
+            text-align: center;
+            border-radius: 2px;
+        }
+
+        /* --- MODALES --- */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7); display: none; justify-content: center; align-items: center; z-index: 2000;
+        }
+        .modal-overlay:target { display: flex; }
+        .modal-content { background: white; width: 700px; padding: 40px; border-radius: 4px; position: relative; }
+        .modal-content h2 { color: var(--azul-hc); border-bottom: 2px solid var(--azul-hc); margin-bottom: 20px; padding-bottom: 10px; }
+        
+        .especialidades-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; list-style: none; margin-top: 15px; }
+        .especialidades-list li { background: var(--gris-fondo); padding: 8px; font-size: 12px; font-weight: 600; border-left: 3px solid var(--azul-hc); }
+
+        .btn-cancelar { color: #d32f2f; text-decoration: none; font-weight: 700; margin-top: 20px; display: inline-block; font-size: 14px; }
+        
+        /* FORMULARIO */
+        .input-group { margin-bottom: 15px; }
+        .input-group label { display: block; font-size: 13px; font-weight: 700; margin-bottom: 5px; }
+        .input-group input { width: 100%; padding: 10px; border: 1px solid var(--borde); }
+
+        /* --- AJUSTES PARA CELULARES Y TABLETS --- */
+        @media (max-width: 1024px) {
+    body {
+        min-width: 100%; /* Sacamos el mínimo de 1366px para que se adapte */
+    }
+
+    header {
+        padding: 0 5%; /* Achicamos los márgenes del cabezal */
+        flex-direction: column; /* Ponemos el logo arriba y el menú abajo si no entran */
+        height: auto;
+        padding-bottom: 10px;
+    }
+
+    .container-cards {
+        flex-direction: column; /* Las tarjetas se ponen una abajo de la otra */
+        padding: 0 5%;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr; /* La guía al usuario pasa a ser de una sola columna */
+    }
+
+    .especialidades-list {
+        grid-template-columns: repeat(2, 1fr); /* En vez de 3 columnas, ponemos 2 en modales */
+    }
+}
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo-container">
+            <div class="logo-img"></div>
+            <a href="#inicio" class="logo-texto">
+                <h1>HOSPITAL DE CLÍNICAS</h1>
+                <p>Dr. Manuel Quintela</p>
+            </a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#servicios">Servicios</a></li>
+                <li><a href="#info">Información</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="inicio">
+        <div class="hero-box">
+            <h2>Excelencia en Salud Universitaria</h2>
+            <p>Comprometidos con la asistencia, la enseñanza y la investigación desde el corazón de Montevideo.</p>
+        </div>
+    </section>
+
+    <section id="servicios">
+        <h2 class="section-title">Nuestra Asistencia</h2>
+        <div class="container-cards">
+            <a href="#mod-emergencia" class="card-link">
+                <div class="card">
+                    <h3>EMERGENCIA</h3>
+                    <p>Atención especializada las 24 horas.</p>
+                </div>
+            </a>
+            <a href="#mod-policlinicas" class="card-link">
+                <div class="card">
+                    <h3>POLICLÍNICAS</h3>
+                    <p>Consultas externas y especialidades médicas.</p>
+                </div>
+            </a>
+            <a href="#mod-tecnologia" class="card-link">
+                <div class="card">
+                    <h3>TECNOLOGÍA</h3>
+                    <p>Servicios de diagnóstico de alta complejidad.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <section class="noticias">
+        <h2 class="section-title">Noticias y Actualidad</h2>
+        <div class="noticias-grid">
+            <div class="noticia-item">
+                <h4>Obras de Modernización</h4>
+                <p>Nuevas salas de espera inauguradas en el cuarto piso para mejorar la experiencia del paciente.</p>
+            </div>
+            <div class="noticia-item">
+                <h4>Investigación Facultad de Medicina</h4>
+                <p>Publicación de avances sobre tratamientos oncológicos desarrollados en nuestro hospital.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="info">
+        <h2 class="section-title">Guía al Usuario</h2>
+        <div class="info-grid">
+            <div class="info-item">
+                <h4>AGENDAR CITA</h4>
+                <p>Pase médico y CI en mostrador central de 08:00 a 16:00 hs.</p>
+            </div>
+            <div class="info-item">
+                <h4>HORARIOS DE VISITA</h4>
+                <p>Salas generales: 11:00 a 19:00 hs (2 acompañantes máx).</p>
+            </div>
+            <div class="info-item">
+                <h4>TRÁMITES</h4>
+                <p>Archivos Médicos: Lunes a Viernes de 08:00 a 14:00 hs.</p>
+            </div>
+            <div class="info-item">
+                <h4>UBICACIÓN</h4>
+                <p>Av. Italia s/n esq. Las Heras. Entrada principal por Las Heras.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contacto">
+        <div class="footer-info">
+            <h2>HOSPITAL DE CLÍNICAS</h2>
+            <p>Central Telefónica: (+598) 2487 1515</p>
+            <p>&copy; 2026 Hospital de Clínicas - Facultad de Medicina - UdelaR</p>
+        </div>
+        <div>
+            <a href="#modal-cita" class="btn-contacto">SOLICITAR AGENDA</a>
+        </div>
+    </footer>
+
+    <div id="mod-emergencia" class="modal-overlay">
+        <div class="modal-content">
+            <h2>SERVICIO DE EMERGENCIA</h2>
+            <p>Atención bajo sistema de Triage para priorizar urgencias.</p>
+            <ul>
+                <li>Shockroom para reanimación.</li>
+                <li>Médicos intensivistas de guardia permanente.</li>
+            </ul>
+            <a href="#!" class="btn-cancelar">CERRAR</a>
+        </div>
+    </div>
+    
+    <div id="mod-policlinicas" class="modal-overlay">
+        <div class="modal-content">
+            <h2>ESPECIALIDADES MÉDICAS</h2>
+            <ul class="especialidades-list">
+                <li>Cardiología</li><li>Neurología</li><li>Dermatología</li>
+                <li>Pediatría</li><li>Ginecología</li><li>Oftalmología</li>
+                <li>Traumatología</li><li>Urología</li><li>Psiquiatría</li>
+                <li>Oncología</li><li>Nefrología</li><li>Hematología</li>
+            </ul>
+            <a href="#!" class="btn-cancelar">CERRAR</a>
+        </div>
+    </div>
+
+    <div id="mod-tecnologia" class="modal-overlay">
+        <div class="modal-content">
+            <h2>ALTA COMPLEJIDAD</h2>
+            <p>Centro de referencia nacional en:</p>
+            <ul>
+                <li>Resonancia Magnética 3 Tesla.</li>
+                <li>Tomografía Computada de 128 cortes.</li>
+                <li>Medicina Nuclear y Medicina Molecular.</li>
+            </ul>
+            <a href="#!" class="btn-cancelar">CERRAR</a>
+        </div>
+    </div>
+
+    <div id="modal-cita" class="modal-overlay">
+        <div class="modal-content" style="max-width: 450px;">
+            <h2>SOLICITUD DE AGENDA</h2>
+            <form>
+                <div class="input-group"><label>Nombre Completo</label><input type="text" required></div>
+                <div class="input-group"><label>Cédula</label><input type="text" required></div>
+                <div class="input-group"><label>Email de contacto</label><input type="email" required></div>
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 20px;">
+                    <a href="#!" class="btn-cancelar">CANCELAR</a>
+                    <button type="submit" style="background: var(--azul-hc); color: white; border: none; padding: 12px 25px; font-weight: 700; cursor: pointer;">ENVIAR</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
